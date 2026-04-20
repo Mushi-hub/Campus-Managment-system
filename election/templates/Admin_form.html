@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block navigation %}
+<a href="{{ url_for('login') }}">Log out</a>
+<a href="{{ url_for('view_candidates_page')}}">Add Candidates</a>
+<a href="{{ url_for('view_candidates_page')}}">View Candidates</a>
+<a href="/results">View Results</a>
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <h2>Menu</h2>
+    <a href="{{ url_for('view_candidates_page')}}">Add Candidates</a>
+    <a href="{{ url_for('view_candidates_page')}}">View Candidates</a>
+    <a href="/results">View Results</a>
+
+</div>
+
+{% endblock %}
+
+{%block content  %}
+
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data" class="form-admin" style="color:white">
+        {{form.hidden_tag()}}
+        <div class="form-row">
+            <div class="form-column">
+                <h3>President</h3>
+                {{form.candidates_name.label}}<br>
+                {{form.candidates_name(class="form-control", placeholder="President Name")}}
+                <br>
+                {{form.candidates_position.label}}<br>
+                {{form.candidates_position(id="president_position", class="form-control")}}
+                <br>
+                {{form.image.label}}<br>
+                {{form.image(id="imageInput", class="form-control")}}<br>
+
+                <div class="preview-container">
+                    <img id="previewImage" src="{{url_for('static', filename='default.png')}}" width="150">
+                </div>
+            </div>
+            <div id="vice_section" class="form-column" style="display:block;">
+                <h3>Vice President</h3>
+                {{form.vice_president_name.label}}<br>
+                {{form.vice_president_name(class="form-control", placeholder="Candidates Name")}}
+                <br>
+                {{form.vice_position.label}}<br>
+                {{form.vice_position(class="form-control", placeholder="Candidates Position")}}
+                <br>
+                {{form.vice_president_image.label}}<br>
+                {{form.vice_president_image(id="imageInput1", class="form-control")}}<br>
+
+                <div class="preview-container">
+                    <img id="previewImage1" src="{{url_for('static', filename='default.png')}}" width="150">
+                </div>
+                <br>
+
+            </div>
+        </div><br>
+        <div class="form-group flex-center">
+            {{form.submit(class="btn")}}
+        </div>
+
+    </form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Image preview for president
+        const imageInput = document.getElementById("imageInput");
+        const preview = document.getElementById("previewImage");
+
+        imageInput.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+            }
+        });
+
+        // Image preview 2
+        const imageInput1 = document.getElementById("imageInput1");
+        const preview1 = document.getElementById("previewImage1");
+
+        imageInput1.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                preview1.src = URL.createObjectURL(file);
+            }
+        });
+    });
+
+</script>
+
+<style>
+
+
+    .container{
+        background-color:#414375;
+        width: 900px;
+        margin: 10px auto;
+        padding: 20px;
+        border: 3px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+    .sidebar{
+    width: 200 px;
+    background: #0f172a;
+    color: white;
+    height: 100%;
+    padding: 20px;
+    position: fixed
+
+    }
+
+    .sidebar a{
+    display: block;
+    color: white;
+    padding: 20px;
+    text-decoration: none;}
+
+    .sidebar a:hover{
+    background: #34495e}
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        }
+
+    .form-column {
+        width: 48%;
+        background-color: #4e5085;
+        padding: 15px;
+        border-radius: 10px;
+        }
+
+/* it will help views to view properly on mobile phones */
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+        }
+
+        .form-column {
+            width: 100%;
+        }
+    }
+
+    .form-control{
+        width: 100%;
+        padding:8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;}
+
+    .flex-center{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    }
+
+    .form-group{
+    margin-bottom: 10px;}
+
+    .preview-container{
+    width: 140px;
+    height: 180px;
+    border: 2px solid #000;
+    margin: 15px auto;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;}
+
+    #previewImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;}
+
+    #previewImage1{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;}
+
+
+    .btn{
+    width: 40%;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #007bff;
+    cursor: pointer;
+    color: white;
+    gap: 20px;}
+
+    .btn:hover{
+    background-color: #34495e;}
+
+</style>
+
+{% endblock %}

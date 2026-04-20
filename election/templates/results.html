@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+
+{% endblock %}
+
+{% block content %}
+<h2 align="center">List of Candidates </h2>
+
+
+<div id="view">
+    <table border="1" align="center">
+        <tr>
+            <th>RANK</th>
+            <th>PRESIDENT</th>
+            <th>VICE PRESIDENT</th>
+            <th width="15%">TOTAL VOTES</th>
+
+        </tr>
+        {% for candidate in results %}
+        <tr>
+            <td>{{ loop.index }}</td>
+
+            <td><b>{{candidate['candidates_name']}}</b><br>
+                <div class="preview-container">
+                    <img src="{{ url_for('static', filename='uploads/' + candidate['image']) }}"
+                         class="candidate-img">
+                </div>
+            </td>
+            <td><b>{{candidate['vice_president_name']}}</b><br>
+                <div class="preview-container">
+                    <img src="{{ url_for('static', filename='uploads/' + candidate['vice_president_image']) }}"
+                         class="candidate-img">
+                </div>
+
+            <td vertical-align="middle">{{ candidate['total_votes'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {{ candidate}}
+</div>
+<style>
+    .preview-container{
+        width: 140px;
+        height: 180px;
+        border: 2px solid #000;
+        margin: 15px auto;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;}
+    table{
+        width: 70%;
+        }
+
+    th,td{
+        padding: 10px;
+        border: 3px solid #0f172a;
+        tex-align: center;
+        align-items: center;}
+
+    td{
+        text-decoration: bold;}
+
+    .candidate-img{
+        width: 140px;
+        height: 180px;
+        object-fit:cover;
+    }
+
+    .view{
+        align: center;
+        }
+
+}
+
+</style>
+
+
+{% endblock %}

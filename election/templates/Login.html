@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+<div class="container">
+    <form method="POST"  class="form-login" style="color:black">
+        {{form.hidden_tag()}}
+        {{form.username.label}}<br>
+        {{form.username(class="form-control", placeholder="User Name")}}
+        <br><br>
+        {{form.password.label}}<br>
+        {{form.password(class="form-control", placeholder="Password")}}<br>
+
+        <div class="form-group flex-center" align="left">
+            {{form.submit(class="btn")}}
+        </div>
+
+
+    </form>
+</div>
+</body>
+<style>
+    .btn{
+    width: 25%;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #007bff;
+    cursor: pointer;
+    color: white;
+    gap: 20px;}
+
+    .form-control{
+    width: 50%;
+    padding:8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;}
+
+    .form-group{
+    margin-bottom: 30px;
+    form-content: center;}
+
+    .container{
+    height: 100%;}
+</style>
+{% endblock %}

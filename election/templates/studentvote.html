@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+<a href="{{ url_for('results_page') }}">Election Results</a>
+{% endblock %}
+
+{% block content %}
+
+<div id="view">
+    <table border="1" align="center">
+        <tr>
+            <th>ID</th>
+            <th>PRESIDENT</th>
+            <th>VICE PRESIDENT</th>
+            <th> Action</th>
+        </tr>
+        {% for candidate in candidates %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><b>{{candidate['candidates_name']}}</b><br>
+                <div class="preview-container">
+                    <img src="{{ url_for('static', filename='uploads/' + candidate['Image']) }}" class="candidate-img">
+                </div>
+            </td>
+
+            <td><b>{{candidate['vice_president_name']}}</b><br>
+                <div class="preview-container">
+                    <img src="{{ url_for('static', filename='uploads/' + candidate['vice_president_image']) }}"
+                         class="candidate-img">
+                </div>
+            </td>
+            <td>
+                <form method="POST">
+                    <input type="radio" name="candidate" value="{{ candidate['Id'] }}" required>
+                    <button type="submit">Vote</button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<style>
+    .preview-container{
+        width: 140px;
+        height: 180px;
+        border: 2px solid #000;
+        margin: 15px auto;
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;}
+    table{
+        width: 75%;}
+
+    th,td{
+        padding: 10px;
+        border: 3px solid #0f172a;
+        tex-align: center;}
+
+    td{
+        text-decoration: bold;}
+
+    .candidate-img{
+        width: 140px;
+        height: 180px;
+        object-fit:cover;
+    }
+
+    .view{
+        align: center;
+        }
+
+    .delete-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        cursor: pointer;}
+
+
+
+    .delete-btn:hover{
+        background-color: dark red;}
+
+</style>
+
+{%endblock%}
