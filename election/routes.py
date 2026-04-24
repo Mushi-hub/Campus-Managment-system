@@ -8,11 +8,13 @@ import time
 from election.forms import AdminForm, LoginForm,studentForm,usersForm
 import mysql.connector
 
+
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="mushi@1695",
-    database="student_elections"
+    host=os.environ.get("MYSQLHOST", "mysql.railway.internal"),
+    user=os.environ.get("MYSQLUSER", "root"),
+    password=os.environ.get("MYSQLPASSWORD", "HwKpHgXmdRCIHwsjTqnPuzEcTmaVEEmt"),
+    database=os.environ.get("MYSQLDATABASE", "railway"),
+    port=int(os.environ.get("MYSQLPORT", 3306))
 )
 
 
