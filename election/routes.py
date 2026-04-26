@@ -10,7 +10,7 @@ import mysql.connector
 
 
 db = mysql.connector.connect(
-    host=os.environ.get("MYSQLHOST", "mysql.railway.internal"),
+    host=os.environ.get("MYSQLHOST", "localhost"),
     user=os.environ.get("MYSQLUSER", "root"),
     password=os.environ.get("MYSQLPASSWORD", "HwKpHgXmdRCIHwsjTqnPuzEcTmaVEEmt"),
     database=os.environ.get("MYSQLDATABASE", "railway"),

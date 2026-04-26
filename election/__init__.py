@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 import os
 
-app.config['MYSQL_HOST'] = 'mysql.railway.internal'
+app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'HwKpHgXmdRCIHwsjTqnPuzEcTmaVEEmt'
 app.config['MYSQL_DB'] = 'railway'
